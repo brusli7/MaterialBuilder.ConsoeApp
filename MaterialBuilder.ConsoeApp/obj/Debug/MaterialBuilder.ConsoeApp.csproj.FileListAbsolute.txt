@@ -1,0 +1,9 @@
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\bin\Debug\Test.exe.config
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\obj\Debug\Test.exe
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\obj\Debug\Test.pdb
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\bin\Debug\NLog.config
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\bin\Debug\Test.exe
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\bin\Debug\Test.pdb
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\bin\Debug\NLog.dll
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\bin\Debug\NLog.xml
+D:\dev\project\MaterialBuilder.ConsoeApp\MaterialBuilder.ConsoeApp\obj\Debug\MaterialBuilder.ConsoeApp.csprojResolveAssemblyReference.cache

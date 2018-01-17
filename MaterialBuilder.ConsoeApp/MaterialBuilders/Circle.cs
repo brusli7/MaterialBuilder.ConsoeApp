@@ -8,7 +8,7 @@ namespace Test.MaterialBuilders
 
         public override void Output()
         {
-            Console.WriteLine("Circle ({0},{1}) size={2}", Positions.PositionX, Positions.PositionY, Diameter);
+            Console.WriteLine("Circle ({0},{1}) size={2}", Positions.X, Positions.Y, Diameter);
         }
 
         public Circle(Position position, int diameter)

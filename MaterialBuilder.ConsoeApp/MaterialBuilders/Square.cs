@@ -8,7 +8,7 @@ namespace Test.MaterialBuilders
 
         public override void Output()
         {
-            Console.WriteLine("Square ({0},{1}) size={2}", Positions.PositionX, Positions.PositionY, Width);
+            Console.WriteLine("Square ({0},{1}) size={2}", Positions.X, Positions.Y, Width);
         }
 
         public Square(Position positions, int width)

@@ -9,7 +9,7 @@ namespace Test.MaterialBuilders
 
         public override void Output()
         {
-            Console.WriteLine("Ellipse ({0},{1}) diameterH = {2} diameterV = {3}", Positions.PositionX, Positions.PositionY, HorizontalDiameter, VerticalDiameter);
+            Console.WriteLine("Ellipse ({0},{1}) diameterH = {2} diameterV = {3}", Positions.X, Positions.Y, HorizontalDiameter, VerticalDiameter);
         }
         public Ellipse(Position positions, int hDiameter, int vDiameter)
         {

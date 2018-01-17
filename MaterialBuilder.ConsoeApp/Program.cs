@@ -6,7 +6,7 @@ namespace Test
 {
     class Program
     {        
-        const int NU_OF_INPUTS = 1;
+        const int NU_OF_INPUTS = 5;
 
         public static void Main(string[] args)
         {                      
@@ -21,7 +21,7 @@ namespace Test
             }
             else
             {              
-                MyLogger.Log();
+                MaterialLogger.Log();
                 Console.WriteLine("+++++Abort+++++");
             }
             Console.ReadKey();
@@ -110,7 +110,7 @@ namespace Test
                     {
                         if ((int.Parse(spec) < 0) || (int.Parse(spec) >= 1000))
                         {
-                            MyLogger.Log("exception with matirial for input " + spec + ", correct input should be between 0 - 1000");
+                            MaterialLogger.Log("exception with matirial for input " + spec + ", correct input should be between 0 - 1000");
                             return false;
                         }
                     }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    public class MyLogger
+    public class MaterialLogger
     {
         private static ILogger _logger = LogManager.GetCurrentClassLogger();
 
         public static void Log()
         {
-            _logger.Error("input was over 1000 or negative");
+            _logger.Error("Input was over 1000 or negative");
         }
 
         public static void Log(Exception e, string message)

@@ -8,13 +8,18 @@ namespace Test
 {
     public class Position
     {
-        public int PositionX { get; set; }
-        public int PositionY { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public Position()
+        {
+            
+        }
 
         public Position(int positionX, int positionY)
         {
-            PositionX = positionX;
-            PositionY = positionY;
+            X = positionX;
+            Y = positionY;
         }
     }
 }
