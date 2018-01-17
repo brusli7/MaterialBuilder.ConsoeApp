@@ -1,0 +1,2 @@
+2018-01-12 14:23:51.4785|ERROR|Test.MyLogger| exception with matirial for input -5, correct input should be between 0 - 1000, 
+2018-01-12 14:23:51.5055|ERROR|Test.MyLogger|input was over 1000 or negative

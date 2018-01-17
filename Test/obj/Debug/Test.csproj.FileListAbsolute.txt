@@ -1,0 +1,9 @@
+d:\dev\project\Test\Test\bin\Debug\Test.exe.config
+d:\dev\project\Test\Test\bin\Debug\NLog.config
+d:\dev\project\Test\Test\bin\Debug\Test.exe
+d:\dev\project\Test\Test\bin\Debug\Test.pdb
+d:\dev\project\Test\Test\bin\Debug\NLog.dll
+d:\dev\project\Test\Test\bin\Debug\NLog.xml
+d:\dev\project\Test\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+d:\dev\project\Test\Test\obj\Debug\Test.exe
+d:\dev\project\Test\Test\obj\Debug\Test.pdb

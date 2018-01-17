@@ -6,7 +6,7 @@ namespace Test
 {
     class Program
     {        
-        const int NU_OF_INPUTS = 5;
+        const int NU_OF_INPUTS = 1;
 
         public static void Main(string[] args)
         {                      
