@@ -18,12 +18,12 @@ namespace Test
 
         public static void Log(Exception e, string message)
         {
-            _logger.Error(" {0}, Exception: {1}", message, e );
+            _logger.Error("{0}, Exception: {1}", message, e );
         }
 
         public static void Log(string message)
         {
-            _logger.Error(" {0}, ", message);
+            _logger.Error("{0}, ", message);
         }
     }
 }

@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using Test.MaterialBuilders;
+using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Test
 {
     class Program
     {        
-        const int NU_OF_INPUTS = 5;
+        const int NU_OF_INPUTS = 1;
 
         public static void Main(string[] args)
         {                      
-            List<string[]> matirialSpecification = Input();
+            List<Material> matirialSpecification = Input();
             if (Validation(matirialSpecification))
             {
                 Console.WriteLine("----------------------------------------------------------------");
@@ -20,7 +22,7 @@ namespace Test
                 Console.WriteLine("----------------------------------------------------------------");
             }
             else
-            {              
+            {
                 MaterialLogger.Log();
                 Console.WriteLine("+++++Abort+++++");
             }
@@ -29,96 +31,139 @@ namespace Test
 
         //This method takes user input and returns a List of string  arrays
         //Example input: 1xr 10 10 30 40 enter.....
-        public static List<string[]> Input()
+        public static List<Material> Input()
         {
             Console.WriteLine("Plese input widget spec: ");
-            string[] inputLines = new string[NU_OF_INPUTS];
-            List<string[]> inputSpec = new List<string[]>();
+            string line = string.Empty;
+            List<Material> materials = new List<Material>();
+            
+            while (!(line.Equals("END")))
+            {
+                int materialCount;
+                string materialType;
+                string[] materialCountAndType;
+                string[] specLine;
+                line = Console.ReadLine();
+                if (!(line.Equals("END")))
+                {
+                    if (ValidationOfSpace(line))
+                    {
+                        specLine = line.Split(' ');
+                        if (ValidateFormat(specLine[0]))
+                        {
+                            materialCountAndType = specLine[0].Split('x');
+                            materialCount = int.Parse(materialCountAndType[0]);
+                            materialType = materialCountAndType[1].ToUpper();
+                            materials.Add(MaterialFactory.Create(materialCount, materialType, specLine));
+                        }
+                        else
+                        {
+                            try
+                            {
+                                Exception e = new Exception();
+                                throw e;
+                            }
+                            catch (Exception)
+                            {
+                                MaterialLogger.Log("Wrong input formt!!");
+                                Console.WriteLine("+++++Abort+++++");
+                                Console.ReadKey();
+                                Environment.Exit(1);
+                            }
 
-            for (int i = 0; i < NU_OF_INPUTS; i++)
-            {
-                string input = Console.ReadLine();
-                inputLines[i] = input;
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }                              
             }
-            
-            for (int i = 0; i < inputLines.Length; i++)
-            {
-                inputSpec.Add(inputLines[i].Split(' '));                              
-            }
-            
-            return inputSpec;
+            return materials;
+           
         }
    
         // This method takes input specification an creates new widgets 
         // and outputs them to the screen
-        public static void Output(List<string[]> inputSpec)
+        public static void Output(List<Material> inputSpec)
         {
-            foreach (var line in inputSpec)
-            {               
-                string typeOfMatirial = line[0];
-                string code = typeOfMatirial.Substring(2).ToUpper();
-                string newText = string.Empty;
-                if (code.Equals("T"))
-                {
-                    for (int i = 5; i < line.Length; i++)
-                    {
-                     newText += line[i] + " ";
-                    }
-                }
-
-                switch (code)
-                {
-
-                    case "R":
-                        Rectangle r = new Rectangle(new Position(int.Parse(line[1]), int.Parse(line[2])), int.Parse(line[3]), int.Parse(line[4]));
-                        r.Output();
-                        break;
-                    case "S":
-                        Square s = new Square(new Position(int.Parse(line[1]), int.Parse(line[2])), int.Parse(line[3]));
-                        s.Output();
-                        break;
-                    case "E":
-                        Ellipse e = new Ellipse(new Position(int.Parse(line[1]), int.Parse(line[2])), int.Parse(line[3]), int.Parse(line[4]));
-                        e.Output();
-                        break;
-                    case "C":
-                        Circle c = new Circle(new Position(int.Parse(line[1]), int.Parse(line[2])), int.Parse(line[3]));
-                        c.Output();
-                        break;
-                    case "T":
-                        Textbox t = new Textbox(new Position(int.Parse(line[1]), int.Parse(line[2])), int.Parse(line[3]), int.Parse(line[4]), newText);
-                        t.Output();
-                        break;
-                    default:
-                        break;
-                }
-
+            foreach (var item in inputSpec)
+            {
+                item.Output();
             }
-
-
         }
 
-        // This method validates if the input is negative or over 1000
-        public static bool Validation(List<string[]> matirialSpec)
+        //This method validates if the input is negative or over 1000
+        public static bool Validation(List<Material> matirialSpec)
         {
             foreach (var line in matirialSpec)
             {
-                int x;
-                foreach (var spec in line)
+                Textbox textBox;
+                Square square;
+                Rectangle rectangle;
+                Circle circle;
+                Ellipse ellipse;
+                if (line.Positions.X >= 1000 || line.Positions.Y >= 1000)
                 {
-                    if (int.TryParse(spec, out x))
-                    {
-                        if ((int.Parse(spec) < 0) || (int.Parse(spec) >= 1000))
-                        {
-                            MaterialLogger.Log("exception with matirial for input " + spec + ", correct input should be between 0 - 1000");
-                            return false;
-                        }
-                    }
-
+                    return false;
                 }
+                else if (line is Textbox)
+                {
+                    textBox = line as Textbox;
+                    if(textBox.Height < 0 || textBox.Width < 0)
+                    {
+                        return false;
+                    }
+                }
+                else if (line is Square)
+                {
+                    square = line as Square;
+                    if (square.Width < 0)
+                    {
+                        return false;
+                    }
+                }
+                else if (line is Rectangle)
+                {
+                    rectangle = line as Rectangle;
+                    if (rectangle.Height < 0 || rectangle.Width < 0)
+                    {
+                        return false;
+                    }
+                }
+                else if (line is Circle)
+                {
+                    circle = line as Circle;
+                    if (circle.Diameter < 0)
+                    {
+                        return false;
+                    }
+                }
+                else if (line is Ellipse)
+                {
+                    ellipse = line as Ellipse;                    
+                    if (ellipse.HorizontalDiameter < 0 || ellipse.VerticalDiameter < 0)
+                    {
+                        return false;
+                    }
+                }       
             }
-
             return true;
+        }
+
+        public static bool ValidationOfSpace(string line)
+        {
+            if (line.Contains(" "))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool ValidateFormat(string str)
+        {
+            Regex pattern = new Regex(@"^\d{1}x[a-zA-Z]$");
+            return pattern.IsMatch(str);
         }
 
     }
